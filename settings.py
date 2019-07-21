@@ -8,8 +8,11 @@ class Settings():
         self.screen_height = 800
         self.bg_colour = (70,30,10)
 
-        # Bounty Hunter settings
+        # Entity speedfactors
         self.bounty_hunter_speedfactor = 1
+
+        #Enemy speedfactors
+        self.nosferatu_speedfactor = 0.25
 
         # Bullet settings
         self.bullet_speedfactor = 2
