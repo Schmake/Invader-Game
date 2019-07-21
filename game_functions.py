@@ -1,5 +1,6 @@
 import sys
 import pygame
+import random
 
 from bullet import Bullet
 from nosferatu import Nosferatu
@@ -28,7 +29,7 @@ def check_keyup_events(event, invasion_settings, screen, bounty_hunter):
         bounty_hunter.moving_down = False
 
 
-def check_events(invasion_settings, screen, bounty_hunter, bullets):
+def check_events(invasion_settings, screen, bounty_hunter, bullets, nosferatus):
 
     # Watch for keyboard and mouse events
     for event in pygame.event.get():
@@ -44,7 +45,11 @@ def check_events(invasion_settings, screen, bounty_hunter, bullets):
             fire_bullet(invasion_settings, screen, bounty_hunter, bullets)
 
 
-def update_screen(invasion_settings, screen, bounty_hunter, nosferatu, bullets):
+    """ Should find a more suitable home that check_events"""
+    if random.randrange(0, 250) < 1:
+        spawn_nosferatu(invasion_settings, screen, bounty_hunter, nosferatus)
+
+def update_screen(invasion_settings, screen, bounty_hunter, nosferatus, bullets):
 
     # Redraw screen during each pass through loop. bg_color defines its colour in RGB terms.
     screen.fill(invasion_settings.bg_colour)
@@ -56,7 +61,13 @@ def update_screen(invasion_settings, screen, bounty_hunter, nosferatu, bullets):
     # Make bounty hunter 2/2, after fill background so bounty hunter is on top
     bounty_hunter.blitme()
 
-    nosferatu.blitme()
+    # nosferatu.blitme()
+    """for nosferatu in nosferatus.sprites():
+        nosferatu.draw_nosferatu()"""
+    for nosferatu in nosferatus.sprites():
+        nosferatu.blitme()
+
+    
 
     # Make most recently drawn screen visible
     pygame.display.flip()
@@ -73,15 +84,19 @@ def update_bullets(bullets, nosferatu):
 
     #collisions = pygame.sprite.groupcollide(bullets, nosferatu, True, True)
 
+
 def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):
     
     new_bullet = Bullet(invasion_settings, screen, bounty_hunter)
     bullets.add(new_bullet)
 
-def update_nosferatu(invasion_settings, screen, bounty_hunter):
 
-    nosferatu.x = (bounty_hunter.center - nosferatu.x)
-    nosferatu.rect.x = nosferatu.x
+def spawn_nosferatu(invasion_settings, screen, bounty_hunter, nosferatus):
 
-    nosferatu.y = (bounty_hunter.bottom - nosferatu.y)
-    nosferatu.rect.y = nosferatu.y
+    #if random.randrange(1, 250) < 100:
+    new_nosferatu = Nosferatu(invasion_settings, screen, bounty_hunter)
+    nosferatus.add(new_nosferatu)
+
+# def spawn_chance(invasion_settings, nosferatu):
+
+

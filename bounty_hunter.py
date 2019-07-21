@@ -9,7 +9,9 @@ class BountyHunter():
 
         # Load bounty hunter and get rect (rects are the rectangles that represent game elements)
         self.image = pygame.image.load('Images/BountyHunter.bmp')
-        """pygame.transform.scale(self.image, (20,20))"""
+
+        #pygame.transform.scale(self.image, (20,20))
+        
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 

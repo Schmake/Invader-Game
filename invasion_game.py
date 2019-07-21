@@ -21,19 +21,19 @@ def run_game():
     bullets = Group()
 
     # Make enemy(Nosferatu)
+    nosferatus = Group()
     nosferatu = Nosferatu(invasion_settings, screen, bounty_hunter)
-    """nosferatu.x = (bounty_hunter.center - nosferatu.x)
-    nosferatu.rect.x = nosferatu.x
-
-    nosferatu.y = (bounty_hunter.bottom - nosferatu.y)
-    nosferatu.rect.y = nosferatu.y"""
 
     while True:
-        gf.check_events(invasion_settings, screen, bounty_hunter, bullets)
+        gf.check_events(invasion_settings, screen, bounty_hunter, bullets, nosferatus)
         bounty_hunter.update()
+
+        # gf.create_nosferatu(invasion_settings, screen,bounty_hunter, nosferatu) SHOULD HAVE READ THE ENTIRE TRACEBACK DUMBASS
+        for nosferatu in nosferatus:
+            nosferatu.update()
+
         gf.update_bullets(bullets, nosferatu)
-        nosferatu.update()
-        gf.update_screen(invasion_settings, screen, bounty_hunter, nosferatu, bullets)
+        gf.update_screen(invasion_settings, screen, bounty_hunter, nosferatus, bullets)
 
 run_game()
 
