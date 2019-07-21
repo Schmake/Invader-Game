@@ -46,7 +46,7 @@ def check_events(invasion_settings, screen, bounty_hunter, bullets, nosferatus):
 
 
     """ Should find a more suitable home that check_events"""
-    if random.randrange(0, 250) < 1:
+    if random.randrange(0, 1000) < invasion_settings.nosferatu_spawnfactor:
         spawn_nosferatu(invasion_settings, screen, bounty_hunter, nosferatus)
 
 def update_screen(invasion_settings, screen, bounty_hunter, nosferatus, bullets):
@@ -73,7 +73,7 @@ def update_screen(invasion_settings, screen, bounty_hunter, nosferatus, bullets)
     pygame.display.flip()
 
 
-def update_bullets(bullets, nosferatu):
+def update_bullets(bullets, nosferatus):
 
     bullets.update()
 
@@ -81,8 +81,8 @@ def update_bullets(bullets, nosferatu):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-
-    #collisions = pygame.sprite.groupcollide(bullets, nosferatu, True, True)
+    
+    collisions = pygame.sprite.groupcollide(bullets, nosferatus, True, True)
 
 
 def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):

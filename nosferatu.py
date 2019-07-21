@@ -1,21 +1,22 @@
 import pygame
 from pygame.sprite import Sprite
+import random
 
 class Nosferatu(Sprite):
 
     def __init__(self, invasion_settings, screen, bounty_hunter):
-        super(Nosferatu, self).__init__()
+        super().__init__()
 
         self.screen = screen
         self.invasion_settings = invasion_settings
         self.bounty_hunter = bounty_hunter
 
-        
+
         self.image = pygame.image.load('Images/Nosferatu2.bmp')
         self.rect = self.image.get_rect()
 
         # Starting each enemy near top left of screen
-        self.rect.x = 0
+        self.rect.x = random.randrange(0, 1200)
         self.rect.y = 0
 
         # Store exact position

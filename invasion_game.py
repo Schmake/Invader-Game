@@ -32,7 +32,7 @@ def run_game():
         for nosferatu in nosferatus:
             nosferatu.update()
 
-        gf.update_bullets(bullets, nosferatu)
+        gf.update_bullets(bullets, nosferatus)
         gf.update_screen(invasion_settings, screen, bounty_hunter, nosferatus, bullets)
 
 run_game()
