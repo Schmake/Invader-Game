@@ -1,6 +1,8 @@
 import sys
 import pygame
 import random
+from time import sleep
+# sleep(0.5)
 
 from bullet import Bullet
 from nosferatu import Nosferatu
@@ -82,8 +84,6 @@ def update_bullets(bullets, nosferatus):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
     
-    collisions = pygame.sprite.groupcollide(bullets, nosferatus, True, True)
-
 
 def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):
     
@@ -97,6 +97,34 @@ def spawn_nosferatu(invasion_settings, screen, bounty_hunter, nosferatus):
     new_nosferatu = Nosferatu(invasion_settings, screen, bounty_hunter)
     nosferatus.add(new_nosferatu)
 
-# def spawn_chance(invasion_settings, nosferatu):
+
+def detect_collisions(invasion_settings, game_stats, screen, bullets, nosferatus, bounty_hunter):
+
+    if pygame.sprite.spritecollideany(bounty_hunter, nosferatus):
+        
+        #pygame.sprite.groupcollide(bounty_hunter, nosferatus, False, True)
+
+        bounty_hunter_hit(invasion_settings, game_stats, screen, bounty_hunter, nosferatus, bullets)
+    
+    # Detect collisions between bullets and enemies. 
+    # Delete both if collision detected, and add 1 to player's score
+    collisions = pygame.sprite.groupcollide(bullets, nosferatus, True, True)
+
+    if collisions:
+        game_stats.score += 1
+
+def bounty_hunter_hit(invasion_settings, game_stats, screen, bounty_hunter, nosferatus, bullets):
+
+    game_stats.lives -= 1
+    nosferatus.empty()
+    bullets.empty()
+    print(str(game_stats.lives))
+
+    if game_stats.lives == 0:
+        nosferatus.empty()
+        bullets.empty()
+        sleep(1.5)
+        game_stats.reset_stats()
 
 
+#def enemy_killed():

@@ -12,7 +12,7 @@ class Settings():
         self.bounty_hunter_speedfactor = 1
 
         #Enemy speedfactors
-        self.nosferatu_speedfactor = 0.3
+        self.nosferatu_speedfactor = 1
         self.nosferatu_spawnfactor = 5
 
         # Bullet settings
