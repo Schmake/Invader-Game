@@ -67,6 +67,8 @@ def update_screen(invasion_settings, screen, game_stats, bounty_hunter, nosferat
     # Redraw screen during each pass through loop. bg_color defines its colour in RGB terms.
     screen.fill(invasion_settings.bg_colour)
 
+    game_stats.create_scoreboard()
+    
     # Redraw bullets behind Bounty Hunter and in front of screenfill
     for bullet in bullets.sprites():
         bullet.draw_bullet()
@@ -83,8 +85,12 @@ def update_screen(invasion_settings, screen, game_stats, bounty_hunter, nosferat
     if not game_stats.game_active:
         play_button.draw_button()
 
+    
     # Make most recently drawn screen visible
     pygame.display.flip()
+
+    """1"""
+
 
 
 def update_bullets(bullets, nosferatus):

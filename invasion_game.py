@@ -20,7 +20,7 @@ def run_game():
     play_button = PlayButton(invasion_settings, screen, "Play")
 
     # Initialize game stats
-    game_stats = GameStats(invasion_settings)
+    game_stats = GameStats(invasion_settings, screen)
 
     # Make Bounty Hunter
     bounty_hunter = BountyHunter(invasion_settings, screen)
@@ -44,6 +44,8 @@ def run_game():
             nosferatu.update()
 
         gf.update_bullets(bullets, nosferatus)
+
+        game_stats.create_scoreboard()
 
         gf.detect_collisions(invasion_settings,game_stats, screen, bullets, nosferatus, 
             bounty_hunter)
