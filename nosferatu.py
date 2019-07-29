@@ -23,10 +23,9 @@ class Nosferatu(Sprite):
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
-
     def blitme(self):
-        self.screen.blit(self.image, self.rect)
 
+        self.screen.blit(self.image, self.rect)
 
     def update(self):
         

@@ -2,7 +2,6 @@ import sys
 import pygame
 import random
 from time import sleep
-# sleep(0.5)
 
 from bullet import Bullet
 from nosferatu import Nosferatu
@@ -18,7 +17,6 @@ def check_keydown_events(event, invasion_settings, screen, bounty_hunter):
     elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
         bounty_hunter.moving_down = True
 
-
 def check_keyup_events(event, invasion_settings, screen, bounty_hunter):
 
     if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
@@ -29,7 +27,6 @@ def check_keyup_events(event, invasion_settings, screen, bounty_hunter):
         bounty_hunter.moving_up = False
     elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
         bounty_hunter.moving_down = False
-
 
 def check_events(invasion_settings, screen, game_stats, play_button, bounty_hunter, bullets, nosferatus):
 
@@ -56,7 +53,6 @@ def check_events(invasion_settings, screen, game_stats, play_button, bounty_hunt
     if random.randrange(0, 1000) < invasion_settings.nosferatu_spawnfactor:
         spawn_nosferatu(invasion_settings, screen, game_stats, bounty_hunter, nosferatus)
 
-
 def check_play_button(game_stats, play_button, mouse_x, mouse_y):
 
     if play_button.rect.collidepoint(mouse_x, mouse_y):
@@ -67,8 +63,8 @@ def update_screen(invasion_settings, screen, game_stats, bounty_hunter, nosferat
     # Redraw screen during each pass through loop. bg_color defines its colour in RGB terms.
     screen.fill(invasion_settings.bg_colour)
 
-    game_stats.create_scoreboard()
-    
+    game_stats.create_update_scoreboard()
+
     # Redraw bullets behind Bounty Hunter and in front of screenfill
     for bullet in bullets.sprites():
         bullet.draw_bullet()
@@ -85,13 +81,8 @@ def update_screen(invasion_settings, screen, game_stats, bounty_hunter, nosferat
     if not game_stats.game_active:
         play_button.draw_button()
 
-    
     # Make most recently drawn screen visible
     pygame.display.flip()
-
-    """1"""
-
-
 
 def update_bullets(bullets, nosferatus):
 
@@ -101,13 +92,11 @@ def update_bullets(bullets, nosferatus):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    
 
 def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):
     
     new_bullet = Bullet(invasion_settings, screen, bounty_hunter)
     bullets.add(new_bullet)
-
 
 def spawn_nosferatu(invasion_settings, screen, game_stats, bounty_hunter, nosferatus):
 
@@ -116,13 +105,10 @@ def spawn_nosferatu(invasion_settings, screen, game_stats, bounty_hunter, nosfer
         new_nosferatu = Nosferatu(invasion_settings, screen, bounty_hunter)
         nosferatus.add(new_nosferatu)
 
-
 def detect_collisions(invasion_settings, game_stats, screen, bullets, nosferatus, bounty_hunter):
 
     if pygame.sprite.spritecollideany(bounty_hunter, nosferatus):
-        
         #pygame.sprite.groupcollide(bounty_hunter, nosferatus, False, True)
-
         bounty_hunter_hit(invasion_settings, game_stats, screen, bounty_hunter, nosferatus, bullets)
     
     # Detect collisions between bullets and enemies. 
@@ -146,7 +132,6 @@ def bounty_hunter_hit(invasion_settings, game_stats, screen, bounty_hunter, nosf
         game_stats.reset_stats()
         bounty_hunter.x = float(400)
         bounty_hunter.y = float(400)
-
 
 
 #def enemy_killed():

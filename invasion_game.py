@@ -45,7 +45,6 @@ def run_game():
 
         gf.update_bullets(bullets, nosferatus)
 
-        game_stats.create_scoreboard()
 
         gf.detect_collisions(invasion_settings,game_stats, screen, bullets, nosferatus, 
             bounty_hunter)

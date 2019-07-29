@@ -32,7 +32,6 @@ class BountyHunter():
         self.moving_up = False
         self.moving_down = False
 
-
     def update(self):
         
         if self.moving_right and self.rect.right < self.screen_rect.right:
@@ -46,7 +45,6 @@ class BountyHunter():
 
         self.rect.x = self.x
         self.rect.y = self.y
-
 
     def blitme(self):
         # Draw ship at current location
