@@ -25,6 +25,7 @@ class BountyHunter():
         print(self.x)
         self.y = float(400)
         print(self.y)
+        print(self.rect)
 
         # Movement flag
         self.moving_right = False

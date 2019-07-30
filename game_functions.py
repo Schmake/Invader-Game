@@ -89,9 +89,9 @@ def update_bullets(bullets, nosferatus):
     bullets.update()
 
     # Deletes bullet when it reaches the top of the screen
-    for bullet in bullets.copy():
+    """for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
-            bullets.remove(bullet)
+            bullets.remove(bullet)"""
 
 def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):
     
