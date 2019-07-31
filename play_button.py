@@ -24,7 +24,6 @@ class PlayButton():
         self.message_image_rect = self.message_image.get_rect()
         self.message_image_rect.center = self.rect.center
 
-
     def draw_button(self):
         self.screen.fill(self.button_colour, self.rect)
         self.screen.blit(self.message_image, self.message_image_rect)

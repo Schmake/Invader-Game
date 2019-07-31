@@ -21,6 +21,7 @@ class Settings():
         self.bullet_width = 4
         self.bullet_height = 12
         self.ammo = 25
+        self.ammo_count = 0
 
 
         

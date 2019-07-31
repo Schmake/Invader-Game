@@ -54,7 +54,6 @@ class Bullet(Sprite):
         self.y += self.normalized_vector[1] * self.speedfactor
         self.rect.y = self.y
 
-
     def draw_bullet(self):
 
         # Draw bullet on the screen, rotate depending on direction it is fired
