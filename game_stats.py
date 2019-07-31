@@ -17,6 +17,7 @@ class GameStats():
 
         self.score = 0
         self.lives = 3
+        self.invasion_settings.ammo = 25
         self.game_active = False
 
     def create_update_scoreboard(self):
@@ -34,3 +35,10 @@ class GameStats():
         self.score_message_rect.y = float(685)
 
         self.screen.blit(self.score_message_image, (self.score_message_rect.x,self.score_message_rect.y))
+
+        self.ammo_message_image = self.font.render("Ammo: " + str(self.invasion_settings.ammo), False, self.colour)
+        self.ammo_message_rect = self.ammo_message_image.get_rect()
+        self.ammo_message_rect.x = float(45)
+        self.ammo_message_rect.y = float(635)
+
+        self.screen.blit(self.ammo_message_image, (self.ammo_message_rect.x,self.ammo_message_rect.y))

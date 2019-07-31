@@ -16,10 +16,11 @@ class Settings():
         self.nosferatu_spawnfactor = 5
 
         # Bullet settings
-        self.bullet_speedfactor = 2
+        self.bullet_speedfactor = 2.5
         self.bullet_colour = 100,160,255
         self.bullet_width = 4
         self.bullet_height = 12
+        self.ammo = 25
 
 
         

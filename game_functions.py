@@ -41,7 +41,7 @@ def check_events(invasion_settings, screen, game_stats, play_button, bounty_hunt
             check_keyup_events(event, invasion_settings, screen, bounty_hunter)
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            fire_bullet(invasion_settings, screen, bounty_hunter, bullets)
+            fire_bullet(invasion_settings, game_stats, screen, bounty_hunter, bullets)
 
         if game_stats.game_active == False:
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -93,10 +93,13 @@ def update_bullets(bullets, nosferatus):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)"""
 
-def fire_bullet(invasion_settings, screen, bounty_hunter, bullets):
+def fire_bullet(invasion_settings, game_stats, screen, bounty_hunter, bullets):
     
-    new_bullet = Bullet(invasion_settings, screen, bounty_hunter)
-    bullets.add(new_bullet)
+    if invasion_settings.ammo > 0:
+        new_bullet = Bullet(invasion_settings, screen, bounty_hunter)
+        bullets.add(new_bullet)
+        if game_stats.game_active == True:
+            invasion_settings.ammo -= 1
 
 def spawn_nosferatu(invasion_settings, screen, game_stats, bounty_hunter, nosferatus):
 
