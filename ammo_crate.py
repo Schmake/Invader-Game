@@ -13,9 +13,10 @@ class AmmoCrate(Sprite):
         self.game_stats = game_stats
 
         self.image = pygame.image.load('Images/ammo_crate.bmp')
+        self.image = pygame.transform.scale(self.image, (140, 90))
         self.rect = self.image.get_rect()
 
-        self.rect.x = random.randrange(50, 1100)
+        self.rect.x = random.randrange(100, 1300)
         self.rect.y = random.randrange(200, 750)
 
         self.x = float(self.rect.x)

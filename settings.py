@@ -4,8 +4,8 @@ class Settings():
     def __init__(self):
 
         # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_width = 1440
+        self.screen_height = 900
         self.bg_colour = 70,30,10
 
         # Entity speedfactors
@@ -24,5 +24,6 @@ class Settings():
         self.ammo_count = 0
 
 
-        
+
+
 

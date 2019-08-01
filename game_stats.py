@@ -18,7 +18,7 @@ class GameStats():
         self.score = 0
         self.lives = 3
         self.invasion_settings.ammo = 25
-        self.ammo_count = 0
+        self.invasion_settings.ammo_count = 0
         self.game_active = False
 
     def create_update_scoreboard(self):

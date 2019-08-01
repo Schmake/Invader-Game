@@ -11,7 +11,7 @@ class BountyHunter():
         self.image = pygame.image.load('Images/BountyHunter.bmp')
 
         #pygame.transform.scale(self.image, (20,20))
-        
+
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -31,7 +31,7 @@ class BountyHunter():
         self.moving_down = False
 
     def update(self):
-        
+
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.invasion_settings.bounty_hunter_speedfactor
         if self.moving_left and self.rect.left > self.screen_rect.left:

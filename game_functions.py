@@ -54,10 +54,9 @@ def check_events(invasion_settings, screen, game_stats, play_button,
     if random.randrange(0, 1000) < invasion_settings.nosferatu_spawnfactor:
         spawn_nosferatu(invasion_settings, screen, game_stats, bounty_hunter, nosferatus)
 
-    if game_stats.score % 5 == 0 and len(ammo_crates) < 1 and game_stats.score != invasion_settings.ammo_count:
+    if game_stats.score % 20 == 0 and len(ammo_crates) < 1 and game_stats.score != invasion_settings.ammo_count:
         spawn_ammo_crate(invasion_settings, screen, game_stats, ammo_crates)
         invasion_settings.ammo_count = game_stats.score
-
 
 def check_play_button(game_stats, play_button, mouse_x, mouse_y):
 
@@ -92,13 +91,15 @@ def update_screen(invasion_settings, screen, game_stats, bounty_hunter,
     # Make most recently drawn screen visible
     pygame.display.flip()
 
-def update_bullets(bullets, nosferatus):
+def update_bullets(screen, bullets, nosferatus):
 
     bullets.update()
+    screen_rect = screen.get_rect()
 
     # Deletes bullet when it reaches the top of the screen
     for bullet in bullets.copy():
-        if bullet.rect.bottom <= 0 or bullet.rect.top > 800 or bullet.rect.x <= 0 or bullet.rect.x > 1200:
+        #if bullet.rect.bottom <= 0 or bullet.rect.top > 800 or bullet.rect.x <= 0 or bullet.rect.x > 1200:
+        if bullet.rect.bottom <= screen_rect.top or bullet.rect.bottom > screen_rect.bottom or bullet.rect.x < screen_rect.left or bullet.rect.x > screen_rect.right:
             bullets.remove(bullet)
 
 def fire_bullet(invasion_settings, game_stats, screen, bounty_hunter, bullets):
@@ -122,7 +123,8 @@ def detect_collisions(invasion_settings, game_stats, screen, bullets,
 
     if pygame.sprite.spritecollideany(bounty_hunter, nosferatus):
         #pygame.sprite.groupcollide(bounty_hunter, nosferatus, False, True)
-        bounty_hunter_hit(invasion_settings, game_stats, screen, bounty_hunter, nosferatus, bullets)
+        bounty_hunter_hit(invasion_settings, game_stats, screen, 
+            bounty_hunter, nosferatus, bullets)
 
     # Detect collisions between bullets and enemies. 
     # Delete both if collision detected, and add 1 to player's score

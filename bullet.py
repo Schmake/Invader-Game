@@ -57,7 +57,8 @@ class Bullet(Sprite):
     def draw_bullet(self):
 
         # Draw bullet on the screen, rotate depending on direction it is fired
-        self.surface = pygame.Surface((self.invasion_settings.bullet_width, self.invasion_settings.bullet_height))
+        self.surface = pygame.Surface((self.invasion_settings.bullet_width, 
+            self.invasion_settings.bullet_height))
         self.surface.fill(self.colour)
         self.surface_rotate = pygame.transform.rotate(self.surface, (self.angle + 90))
         self.screen.blit(self.surface_rotate, self.rect)

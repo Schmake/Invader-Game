@@ -48,7 +48,7 @@ def run_game():
         for nosferatu in nosferatus:
             nosferatu.update()
         
-        gf.update_bullets(bullets, nosferatus)
+        gf.update_bullets(screen, bullets, nosferatus)
 
         gf.detect_collisions(invasion_settings,game_stats, screen, bullets, nosferatus, 
             bounty_hunter, ammo_crates)
