@@ -16,7 +16,7 @@ class Nosferatu(Sprite):
         self.rect = self.image.get_rect()
 
         # Starting each enemy near top left of screen
-        self.rect.x = random.randrange(0, 1400)
+        self.rect.x = random.randrange(-50, 1490)
         self.rect.y = -250
 
         # Store exact position

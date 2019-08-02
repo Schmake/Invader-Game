@@ -58,6 +58,11 @@ def check_events(invasion_settings, screen, game_stats, play_button,
         spawn_ammo_crate(invasion_settings, screen, game_stats, ammo_crates)
         invasion_settings.ammo_count = game_stats.score
 
+    if (game_stats.score - game_stats.hidden_score) % 50 == 0 and game_stats.score != game_stats.hidden_score:
+        game_stats.hidden_score += 50
+        invasion_settings.level += 1
+        level_up(invasion_settings, screen, game_stats)
+        
 def check_play_button(game_stats, play_button, mouse_x, mouse_y):
 
     if play_button.rect.collidepoint(mouse_x, mouse_y):
@@ -143,6 +148,7 @@ def bounty_hunter_hit(invasion_settings, game_stats, screen,
     nosferatus.empty()
     bullets.empty()
     print(str(game_stats.lives))
+    invasion_settings.ammo += 20
 
     if game_stats.lives == 0:
         nosferatus.empty()
@@ -163,4 +169,8 @@ def spawn_ammo_crate(invasion_settings, screen, game_stats, ammo_crates):
         new_ammo_crate = AmmoCrate(invasion_settings, screen, game_stats)
         ammo_crates.add(new_ammo_crate)
 
-#def enemy_killed():
+def level_up(invasion_settings, screen, game_stats):
+
+    invasion_settings.nosferatu_spawnfactor = 5 + (invasion_settings.level * 0.2)
+    invasion_settings.nosferatu_speedfactor = 1.5 + (invasion_settings.level * 0.05)
+        

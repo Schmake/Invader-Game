@@ -16,9 +16,11 @@ class GameStats():
     def reset_stats(self):
 
         self.score = 0
+        self.hidden_score = 0
         self.lives = 3
         self.invasion_settings.ammo = 25
         self.invasion_settings.ammo_count = 0
+        self.invasion_settings.level = 0
         self.game_active = False
 
     def create_update_scoreboard(self):
@@ -26,20 +28,27 @@ class GameStats():
         self.lives_message_image = self.font.render("Lives: " + str(self.lives), False, self.colour)
         self.lives_message_rect = self.lives_message_image.get_rect()
         self.lives_message_rect.x = float(45)
-        self.lives_message_rect.y = float(735)
+        self.lives_message_rect.y = float(835)
 
         self.screen.blit(self.lives_message_image, (self.lives_message_rect.x,self.lives_message_rect.y))
 
         self.score_message_image = self.font.render("Score: " + str(self.score), False, self.colour)
         self.score_message_rect = self.score_message_image.get_rect()
         self.score_message_rect.x = float(45)
-        self.score_message_rect.y = float(685)
+        self.score_message_rect.y = float(785)
 
         self.screen.blit(self.score_message_image, (self.score_message_rect.x,self.score_message_rect.y))
 
         self.ammo_message_image = self.font.render("Ammo: " + str(self.invasion_settings.ammo), False, self.colour)
         self.ammo_message_rect = self.ammo_message_image.get_rect()
         self.ammo_message_rect.x = float(45)
-        self.ammo_message_rect.y = float(635)
+        self.ammo_message_rect.y = float(735)
 
         self.screen.blit(self.ammo_message_image, (self.ammo_message_rect.x,self.ammo_message_rect.y))
+
+        self.level_message_image = self.font.render("Level: " + str(self.invasion_settings.level), False, self.colour)
+        self.level_message_rect = self.level_message_image.get_rect()
+        self.level_message_rect.x = float(1290)
+        self.level_message_rect.y = float(835)
+
+        self.screen.blit(self.level_message_image, (self.level_message_rect.x,self.level_message_rect.y))
